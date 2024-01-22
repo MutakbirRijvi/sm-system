@@ -72,6 +72,27 @@ require('optionfunction.php');
         }
     }
     ?>
+
+<?php 
+    if(isset($_GET['product_name']))
+    {
+        $product_name =$_GET['product_name'];
+
+        $sql1 = "SELECT * FROM spendproduct WHERE spend_name = $product_name";
+        $query1 = $conn->query($sql1);
+        while($data1 = mysqli_fetch_assoc($query1)){
+            $spend_name = $data1['spend_name'];
+            $spend_quantity = $data1['spend_quantity'];
+            $spend_entrydate = $data1['spend_entrydate'];
+    
+            echo "<br><h1>$data_list[$spend_name]</h1>";
+            echo "<table border = '1' class='table table-success table-striped'><tr><th>Spend Product Entry Date</th><th>Spend Product Quantity</th></tr>";
+            echo "<tr><td>$spend_entrydate</td><td>$spend_quantity</td></tr>";
+            echo "</table>";
+        }
+    }
+    ?>
+    
     
     
 
